@@ -1,0 +1,77 @@
+<!--
+https://szzlvtfijjjcpvw.form.io/plusnumber
+
+  Formio.createForm(document.getElementById('formio'), 'https://examples.form.io/translation', {
+    readOnly: false
+  }).then(function(form) {
+    // form events go here
+  });
+  
+  -->
+  
+  <head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'/>
+    <link rel='stylesheet' href='https://unpkg.com/formiojs@latest/dist/formio.full.min.css'/>
+    <script src='https://unpkg.com/formiojs@latest/dist/formio.full.min.js'></script>
+    <script src="scripts/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+
+    <!-- <script type='text/javascript' src='YourJavascriptLinkHere'>  -->
+  <style>
+            #formio {
+            padding: 15px;
+            min-height: 550px;
+            }
+
+            table {
+            text-align: center;
+            }
+  </style>
+    </head>
+  
+  <body>
+    <div id="formio"></div>
+
+	<script>
+		  Formio.createForm(document.getElementById('formio'), 'https://szzlvtfijjjcpvw.form.io/plusnumber', {
+		         readOnly: false,
+                language: 'en',
+                i18n: {
+                'en': {
+                    Submit: 'ส่ง'
+					}
+                }
+	  }).then(function(form) {
+		// form events go here
+                window.setLanguage = function(lang) {
+                form.language = lang;
+			//	console.log("Lang ",lang);
+                };
+				
+             
+					
+		            form.on('toggleTh',function(){
+						window.setLanguage('th');
+					});
+					
+					
+					
+
+            var thTranslation = {
+               Submit: 'ส่งไปเลย',
+			   'Number 1': 'ตัวตั้ง',
+			   'Number 2': 'ตัวบวก',
+			   'Result': 'ผลลัพธ์',
+			   'Thai': 'ภาษาไทย',
+            };
+			
+		form.addLanguage('th', thTranslation);
+		
+
+    
+
+
+
+	  });  
+    </script>
+  </body>
