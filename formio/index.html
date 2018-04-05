@@ -1,0 +1,110 @@
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'/>
+    <link rel='stylesheet' href='https://unpkg.com/formiojs@latest/dist/formio.full.min.css'/>
+    <script src='https://unpkg.com/formiojs@latest/dist/formio.full.min.js'></script>
+    <script src="./scripts/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+
+    <!-- <script type='text/javascript' src='YourJavascriptLinkHere'>  -->
+  <style>
+            #formio {
+            padding: 15px;
+            min-height: 550px;
+            }
+
+            table {
+            text-align: center;
+            }
+  </style>
+    </head>
+  
+  <body>
+    <div id="formio"></div>
+
+    <script>
+            Formio.createForm(document.getElementById('formio'), 'https://examples.form.io/translations', {
+                readOnly: false,
+                language: 'en',
+                i18n: {
+                'en': {
+                    Submit: 'Complete'
+                }
+                }
+            }).then(function(form) {
+                // Alternatively you could fetch browser location to set lang
+                // form.language = window.navigator.language.substring(0, 2);
+                window.setLanguage = function(lang) {
+                form.language = lang
+                };
+
+                // Add Language Translations to i18n method
+                form.addLanguage('es', esTranslation);
+                form.addLanguage('th', frTranslation);
+
+                form.on('toggleEn', function() {
+                window.setLanguage('en')
+                });
+
+                form.on('toggleEs', function() {
+                window.setLanguage('es')
+                });
+
+                form.on('toggleFr', function() {
+                window.setLanguage('th')
+                });
+
+
+            });
+
+            var esTranslation = {
+                'Submit': 'Enviar',
+                'Language': 'Idioma',
+                'Translations': 'Traducciones',
+                'First Name': 'Tu nombre',
+                'Last Name': 'Apellido',
+                'Enter your email address': 'Ingrese su dirección de correo electrónico',
+                'Enter your first name': 'Ponga su primer nombre',
+                'Enter your last name': 'Ingresa tu apellido',
+                'Valid Email Address': 'dirección de email válida',
+                'Please correct all errors before submitting.': 'Por favor, corrija todos los errores antes de enviar.',
+                'required': '{{field}} es requerido.',
+                'invalid_email': '{{field}} debe ser un correo electrónico válido.',
+                'error': 'Por favor, corrija los siguientes errores antes de enviar.'
+            };
+
+            var frTranslation = {
+                'Submit': 'ส่ง',
+                'Language': 'ภาษา',
+                'Translations': 'การแปล',
+                'First Name': 'ชื่อ',
+                'Last Name': 'นามสกุล',
+                'Enter your first name': 'กรอกชื่อ',
+                'Enter your last name': 'กรอกนามสกุล',
+                'Enter your email address': 'กรอกอีเมล',
+                'Valid Email Address': 'อีเมลถูกต้อง',
+                'Please correct all errors before submitting.': 'โปรดแก้ไขข้อผิดพลาดก่อนส่งข้อมูล',
+                'required': 'จำเป็นต้องระบุ',
+                'invalid_email': 'รูปแบบของอีเมลผิดพลาด',
+                'error': 'เกิดข้อผิดพลาด'
+            };    
+
+
+            var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://szzlvtfijjjcpvw.form.io/user/login",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "processData": false,
+  "data": "{\n    \"data\": {\n        \"email\": \"s.sukmuang@togetherteam.co.th\",\n        \"password\": \"xxxx\"\n    }\n}"
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+
+
+    </script>
+  </body>
