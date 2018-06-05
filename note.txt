@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/50642602/how-to-send-cookies-with-goutte-and-guzzle-client-6
