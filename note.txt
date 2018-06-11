@@ -5,3 +5,4 @@ https://newsapi.org/s/thailand-sports-news-api
 https://github.com/Medium/medium-api-docs
 http://blog.dreamfactory.com/why-we-didnt-choose-node.js-for-the-dreamfactory-rest-api-backend
 https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design
+https://stackoverflow.com/questions/2147902/is-it-faster-to-access-data-from-files-or-a-database-server
