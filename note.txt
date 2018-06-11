@@ -2,3 +2,4 @@ https://stackoverflow.com/questions/50642602/how-to-send-cookies-with-goutte-and
 http://engineer.kmitl.ac.th/engineer2015/2016/03/page/3/
 motorcycle cellphone charger
 https://newsapi.org/s/thailand-sports-news-api
+https://github.com/Medium/medium-api-docs
