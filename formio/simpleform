@@ -1,0 +1,70 @@
+<html>
+  <head>
+      <title>formiojs @ 3.0.0-rc.8  Without ngFormio</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://unpkg.com/formiojs@3.0.0-rc.8/dist/formio.full.min.css'>
+    <script src='https://unpkg.com/formiojs@3.0.0-rc.8/dist/formio.full.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type='text/javascript'>
+      window.onload = function() {
+        let formioComponents;
+        var builder = new Formio.builder(document.getElementById('builder'), {components: this.formioComponents});
+        
+        setTimeout(() => {
+            Formio.createForm(document.getElementById('formio'), 'https://examples.form.io/example');    
+        }, 1000);
+
+        console.log("builder!!!",builder);
+        builder.then(function(event){
+            console.log("5555",event);
+            console.log("event.schema",event.schema);
+
+            /* Update Component*/
+            event.on('updateComponent',function(form){
+
+                    testData  = event._form;
+                    console.log("testData",testData);
+
+                    $( document ).ready(function() {
+                        console.log( "ready!" );
+                        console.log("event._form_1",event._form);
+                        setTimeout(() => {
+                                            Formio.createForm(document.getElementById('formio'), event._form
+                                        )}, 100);  
+                                        console.log("event._form_2",event._form);                                      
+                    });                  
+
+            });
+
+            /*Save Component*/
+            event.on("saveComponent",function(form){
+
+                console.log("Save Data.event._form",event._form);
+                                        setTimeout(() => {
+                                            Formio.createForm(document.getElementById('formio'), event._form
+                                        )}, 100); 
+
+            })
+            /* Delete Component */
+            event.on("deleteComponent",function(form){
+                    console.log("Test Delete");
+                    setTimeout(() => {
+                        Formio.createForm(document.getElementById('formio'), event._form
+                    )}, 100);                    
+            });
+        });
+      };
+
+     
+       
+    </script>
+  </head>
+  <body>
+      <div class="container" >
+         <div class="container" id='builder'></div>
+         <h1> HTML RENDER TEST</h1>
+         <div id='formio'></div>
+      </div>      
+  </body>
+</html>
