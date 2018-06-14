@@ -8,3 +8,4 @@ https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design
 https://stackoverflow.com/questions/2147902/is-it-faster-to-access-data-from-files-or-a-database-server
 14-06-2561
 futmillionaire.com
+tautology
