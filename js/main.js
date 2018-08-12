@@ -18,12 +18,29 @@ $( document ).ready(function() {
 
     for (var i = 0; i < data.length; i++) {
      $('.blog').append(
-      '<div class="container post">'+
-      '<div class="head"> <h1> '+ data[i].data.head +' </h1> </div>'+
-      '<div><small>'+ convertTimeZone(data[i].created) +' <i class="fas fa-bug"></i></small></div>'+
-      '<div class="content"> <p> '+ data[i].data.content +' </p> </div>'+
-      '</div>'
 
+      // '<div class="container post">'+
+      // '<div class="head"> <h1> '+ data[i].data.head +' </h1> </div>'+
+      // '<div><small>'+ convertTimeZone(data[i].created) +' <i class="fas fa-bug"></i></small></div>'+
+      // '<div class="content"> <p> '+ data[i].data.content +' </p> </div>'+
+      // '</div>'
+  '<div id="accordion">'+
+  '<div class="card"> '+
+  '<div class="card-header" id="headingOne">'+  
+  '<h5 class="mb-0">'+   
+  ' <button class="btn btn-link" data-toggle="collapse" data-target=#collapse'+i+ ' aria-expanded="true" aria-controls=collapse'+i+'>'  +   
+  '<div class="head"> <h3> '+ data[i].data.head +' </h3> </div>'+  
+  '</button>'  +    
+  '</h5>' +   
+  '</div>'  +
+  '<div id=collapse'+i+' class="collapse" aria-labelledby="headingOne" data-parent="#accordion">' + 
+  '<div class="card-body">'  +  
+   '<div><small>'+ convertTimeZone(data[i].created) +' <i class="fas fa-bug"></i></small></div>'+
+  '<div class="content"> <p> '+ data[i].data.content +' </p> </div>'+
+  ' </div>'+   
+  '</div>' +
+  '</div>'+
+  '</div>'
       ); 
 
    }
