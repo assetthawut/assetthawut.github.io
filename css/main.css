@@ -1,0 +1,18 @@
+  .post{
+      background-color: #F3F2F0;
+      margin: 10px;
+  }
+  .head{
+    color: #F7715D;
+  }
+  .content{
+    color: #594A46;
+  }
+  
+  .cover{
+    background-color: #FCC37C;
+    margin: 10px;
+  }
+  .cover>h1{
+    color: #594A46;
+  }
