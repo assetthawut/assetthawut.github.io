@@ -20,7 +20,7 @@ $( document ).ready(function() {
      $('.blog').append(
       '<div class="container post">'+
       '<div class="head"> <h1> '+ data[i].data.head +' </h1> </div>'+
-     // '<div><small>'+ convertTimeZone(data[i].created) +' <i class="fas fa-bug"></i></small></div>'+
+      '<div><small>'+ convertTimeZone(data[i].created) +' <i class="fas fa-bug"></i></small></div>'+
       '<div class="content"> <p> '+ data[i].data.content +' </p> </div>'+
       '</div>'
 
