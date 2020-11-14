@@ -20,18 +20,50 @@
                     <input type="file" id="imgInput" name="imgInput" >
                     <br>
                     <div class="">
-                        <input type="radio" id="share" name="template" value="share">
-                        <label for="male">Share</label><br>
-                        <input type="radio" id="square" name="template" value="square">
-                        <label for="square">Square</label><br>
-                        <input type="radio" id="squareAlbumCover" name="template" value="squareAlbumCover">
-                        <label for="squareAlbumCover">Square Album Cover</label>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <input type="radio" id="share" name="template" value="share">
+                                <label for="male">Shared Link</label><br>
+                            </div>
+                            <div class="col-6">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" id="square" name="template" value="square">
+                                <label for="square">Square</label><br>
+                            </div>
+                            <div class="col-6">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" id="squareAlbumCover" name="template" value="squareAlbumCover">
+                                <label for="squareAlbumCover">Square Album Cover</label><br>
+                            </div>
+                            <div class="col-6">
+                            </div>
+                        </div>       
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" id="squareAlbumVerticalCover" name="template" value="squareAlbumVerticalCover">
+                                <label for="squareAlbumVerticalCover">Vertical Album Cover</label>
+                            </div>
+                            <div class="col-6">
+                            </div>
+                        </div>                                                
                     </div>
                 </form>
             </div>
         </div>
         <div class="row">
             <div class="col-12 w-100">
+                <div class="alert alert-danger d-none" role="alert" id="canvasNotice">
+                    ไฟล์มีขนาดเล็กกว่า 800*800 px
+                </div>                
+                <div class="alert alert-info" role="alert" id="canvasGuide">
+                    Double click เพื่อดาวน์โหลดภาพ
+                </div>                
                 <div id="canvasDiv"></div>
             </div>
         </div>
@@ -45,6 +77,7 @@
     <script src="js/RecSharedlink.js"></script>
     <script src="js/Square.js"></script>
     <script src="js/SquareAlbumCover.js"></script>
+    <script src="js/SquareAlbumVerticalCover.js"></script>
     <script src="js/utilLib.js"></script>
     <script>
     function preload(){
@@ -90,8 +123,12 @@
                 // etc.
 
                 if (result.width < 800 || result.height < 800) {
-                    alert('fail');
+                    $('#canvasNotice').removeClass('d-none');
+                    $('#canvasGuide').addClass('d-none');
+
                 }else{
+                    $('#canvasNotice').addClass('d-none');
+                    $('#canvasGuide').removeClass('d-none');
                     photo = result;
                     canvas = createCanvas(result.width, result.height);
                     canvas.parent('canvasDiv');
@@ -134,6 +171,13 @@
                 h = 1200;
                 rectangle = new RecSharedlink(x, y, w, h);                 
                 break;
+            case "squareAlbumVerticalCover":
+                x = random(0);
+                y = random(0);
+                w = 1200;
+                h = 1200;
+                rectangle = new SquareAlbumVerticalCover(x, y, w, h);   
+                break;                
             default:
                 break;
         }
