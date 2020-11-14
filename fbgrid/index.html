@@ -1,12 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!-- 
+        P5js src 
+            - https://editor.p5js.org/enickles/sketches/H1n19TObz
+     -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Facebook Croper</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Sample</h1>
+    <!-- form -->
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-12">
+                <h4>FB Grid demo</h4>
+                <form action="" method="post"  enctype="multipart/form-data">
+                    <input type="file" id="imgInput" name="imgInput" >
+                    <br>
+                    <div class="">
+                        <input type="radio" id="share" name="template" value="share">
+                        <label for="male">Share</label><br>
+                        <input type="radio" id="square" name="template" value="square">
+                        <label for="square">Square</label><br>
+                        <input type="radio" id="squareAlbumCover" name="template" value="squareAlbumCover">
+                        <label for="squareAlbumCover">Square Album Cover</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 w-100">
+                <div id="canvasDiv"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js" integrity="sha512-WIklPM6qPCIp6d3fSSr90j+1unQHUOoWDS4sdTiR8gxUTnyZ8S2Mr8e10sKKJ/bhJgpAa/qG068RDkg6fIlNFA==" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="js/RectangleDemo.js"></script>
+    <script src="js/RecSharedlink.js"></script>
+    <script src="js/Square.js"></script>
+    <script src="js/SquareAlbumCover.js"></script>
+    <script src="js/utilLib.js"></script>
+    <script>
+    function preload(){
+        photo = loadImage('img/r9.jpg');
+
+    }    
+    function setup() {
+        let canvas = createCanvas(photo.width, photo.height);
+            canvas.parent('canvasDiv');
+        image(photo, 0, 0);
+        let x = random(0);
+        let y = random(0);
+        let w = 1200;
+        let h = 1200;
+        rectangle = new SquareAlbumCover(x, y, w, h);
+    }      
+
+    function draw(){
+        background(photo);
+        rectangle.show(mouseX, mouseY);
+    }
+
+    function mousePressed() {
+        rectangle.pressed(mouseX, mouseY);
+    }
+
+    function mouseReleased() {
+        rectangle.notPressed();
+    }
+
+    function doubleClicked(){
+        rectangle.downloadCropping();
+        
+    }
+
+    // Jquery Script 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            let url = window.URL.createObjectURL(input.files[0]);
+            // photo = loadImage(url);
+            var result = loadImage(url, () => {
+                image(result, 0, 0);
+                // etc.
+
+                if (result.width < 800 || result.height < 800) {
+                    alert('fail');
+                }else{
+                    photo = result;
+                    canvas = createCanvas(result.width, result.height);
+                    canvas.parent('canvasDiv');
+                }
+            });
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                return 
+            }
+            
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+
+    $("#imgInput").change(function() {
+        readURL(this);
+    });
+    
+    $('input[type=radio][name=template]').change(function() {
+        let template = this.value;
+        switch(template){
+            case "square":
+                x = random(0);
+                y = random(0);
+                w = 1200;
+                h = 1200;
+                rectangle = new Square(x, y, w, h);                
+                break;
+            case "squareAlbumCover":
+                x = random(0);
+                y = random(0);
+                w = 1200;
+                h = 1200;
+                rectangle = new SquareAlbumCover(x, y, w, h);                      
+                break;
+            case "share":
+                x = random(0);
+                y = random(0);
+                w = 1200;
+                h = 1200;
+                rectangle = new RecSharedlink(x, y, w, h);                 
+                break;
+            default:
+                break;
+        }
+    });
+
+
+    </script>
 </body>
 </html>
