@@ -140,6 +140,7 @@
                     $('#canvasNotice').addClass('d-none');
                     $('#canvasGuide').removeClass('d-none');
                     photo = result;
+                    hScale = photo.width/1000;
                     photo.resize(1000, photo.height/hScale);
                     canvas = createCanvas(result.width, result.height);
                     canvas.parent('canvasDiv');
