@@ -87,8 +87,6 @@
 
     }    
     function setup() {
-        console.log("==>",photo.width);
-        console.log("==>",photo.height);
         let hScale = photo.width/1000;
         photo.resize(1000, photo.height/hScale);
         let canvas = createCanvas(photo.width, photo.height);
@@ -142,6 +140,7 @@
                     $('#canvasNotice').addClass('d-none');
                     $('#canvasGuide').removeClass('d-none');
                     photo = result;
+                    photo.resize(1000, photo.height/hScale);
                     canvas = createCanvas(result.width, result.height);
                     canvas.parent('canvasDiv');
                 }
