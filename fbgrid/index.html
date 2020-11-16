@@ -81,11 +81,17 @@
     <script src="js/utilLib.js"></script>
     <script>
     function preload(){
-        photo = loadImage('img/r9.jpg');
+        // photo = loadImage('img/r9.jpg');
+    photo = loadImage('img/big.jpg');
+        
 
     }    
     function setup() {
+        let hScale = photo.width/1000;
+        photo.resize(1000, photo.height/hScale);
         let canvas = createCanvas(photo.width, photo.height);
+        // let canvas = createCanvas(photo.width, photo.height);
+        // let canvas = createCanvas(windowWidth, windowHeight);
             canvas.parent('canvasDiv');
         image(photo, 0, 0);
         let x = random(0);
@@ -112,6 +118,10 @@
         rectangle.downloadCropping();
         
     }
+
+    // function windowResized() {
+    //  resizeCanvas(windowWidth, windowHeight);
+    // }
 
     // Jquery Script 
     function readURL(input) {
