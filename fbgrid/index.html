@@ -82,11 +82,13 @@
     <script>
     function preload(){
         // photo = loadImage('img/r9.jpg');
-    photo = loadImage('img/big.jpg');
+    photo = loadImage('img/big.JPG');
         
 
     }    
     function setup() {
+        console.log("==>",photo.width);
+        console.log("==>",photo.height);
         let hScale = photo.width/1000;
         photo.resize(1000, photo.height/hScale);
         let canvas = createCanvas(photo.width, photo.height);
